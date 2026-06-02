@@ -1,4 +1,3 @@
-
 # PROJECT: AI-Based Fake News Detection System
 
 import streamlit as st
@@ -563,9 +562,9 @@ code { background: rgba(0,245,255,0.08) !important; color: var(--cyan) !importan
 
 @st.cache_resource
 def load_models():
-    with open("models/lr_model.pkl","rb") as f: lr  = pickle.load(f)
-    with open("models/nb_model.pkl","rb") as f: nb  = pickle.load(f)
-    with open("models/tfidf.pkl",   "rb") as f: tfi = pickle.load(f)
+    with open("lr_model.pkl","rb") as f: lr  = pickle.load(f)
+    with open("nb_model.pkl","rb") as f: nb  = pickle.load(f)
+    with open("tfidf.pkl",   "rb") as f: tfi = pickle.load(f)
     return lr, nb, tfi
 
 lemmatizer = WordNetLemmatizer()
@@ -832,22 +831,22 @@ with tab2:
         with c1:
             st.markdown("** CONFUSION MATRICES**")
             st.caption("Correct vs incorrect predictions for each model")
-            st.image("plots/confusion_matrices.png", use_column_width=True)
+            st.image("confusion_matrices.png", use_column_width=True)
         with c2:
             st.markdown("** MODEL ACCURACY COMPARISON**")
             st.caption("Accuracy, Precision, Recall, F1-Score")
-            st.image("plots/model_comparison.png", use_column_width=True)
+            st.image("model_comparison.png", use_column_width=True)
 
         st.markdown("---")
         c3, c4 = st.columns(2)
         with c3:
             st.markdown("** FAKE NEWS — WORD CLOUD**")
             st.caption("Most frequent words in fake articles")
-            st.image("plots/wordcloud_fake.png", use_column_width=True)
+            st.image("wordcloud_fake.png", use_column_width=True)
         with c4:
             st.markdown("** REAL NEWS — WORD CLOUD**")
             st.caption("Most frequent words in real articles")
-            st.image("plots/wordcloud_real.png", use_column_width=True)
+            st.image("wordcloud_real.png", use_column_width=True)
 
     except Exception:
         st.warning(" Plots not found. Run: python train_model.py")
